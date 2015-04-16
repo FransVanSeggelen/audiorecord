@@ -117,7 +117,8 @@ alert('fileSystem= ' + fileSystem.root + '=' + fileSystem.name);
             console.log('--' + key + '=' + fileSystem[key]);
             if(key=='root'){
                 for(var effe in fileSystem[key]){
-                    console.log('--' + effe + '=' + fileSystem[effe]);
+                    alert('---->' + effe + '=' + fileSystem[effe]);
+                    console.log('---->' + effe + '=' + fileSystem[effe]);
                 }
             }
         }
