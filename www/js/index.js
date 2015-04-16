@@ -115,6 +115,11 @@ alert('Net na uploading...');
 alert('fileSystem= ' + fileSystem.root + '=' + fileSystem.name);
         for(var key in fileSystem){
             console.log('--' + key + '=' + fileSystem[key]);
+            if(key=='root'){
+                for(var effe in fileSystem[key]){
+                    console.log('--' + effe + '=' + fileSystem[effe]);
+                }
+            }
         }
         fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
 alert('Bij getFile...');
