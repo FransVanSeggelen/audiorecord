@@ -109,26 +109,29 @@ function playRecordedFile(){
 function sendRecordedFile(){
     updateCurrentState('idle');
     $('#textSendStatus').html('uploading...');
-alert('Net na uploading...');
+    alert('Net na uploading...');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
-alert('Bij requestFileSystem...');
+        alert('Bij requestFileSystem...');
         fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
-alert('Bij getFile...');
-            var options = new FileUploadOptions();
-            options.fileKey = "recordedAudio";
-            options.fileName = filename;
-            options.mimeType = filemime;
-            options.chunkedMode = false;
+            alert('Bij .getFile...');
+            fileEntry.file(function(file){
+                alert('Bij fileEntry.file...');
+                var options = new FileUploadOptions();
+                options.fileKey = "recordedAudio";
+                options.fileName = filename;
+                options.mimeType = filemime;
+                options.chunkedMode = false;
 
-alert('Net voor file transfer...');
-            var ft = new FileTransfer();
-            ft.upload(fileEntry.toURL(), uploadURL, 
-                function(res){
-                    $('#textSendStatus').html('success!');
-                }, function(err){
-                    alert('oh no!');
-                    $('#textSendStatus').html(err.body);
-                }, options);
+                alert('Net voor file transfer...');
+                var ft = new FileTransfer();
+                ft.upload(fileEntry.toURL(), uploadURL, 
+                    function(res){
+                        $('#textSendStatus').html('success!');
+                    }, function(err){
+                        alert('oh no!');
+                        $('#textSendStatus').html(err.body);
+                    }, options);
+            }, function(error){alert('Error getting the file: ' + error.code + '= ' + error.message)});
         }, function(error){alert('Error getting the file: ' + error.code + '= ' + error.message)});
     });
 
