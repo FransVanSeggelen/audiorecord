@@ -113,7 +113,7 @@ alert('Net na uploading...');
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
 alert('Bij requestFileSystem...');
-        fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
+        fileSystem.root.getDirectory('data', {create: true}).getFile(filename, { create: false, exclusive: false }, function(fileEntry){
 alert('Bij getFile...');
             var options = new FileUploadOptions();
             options.fileKey = "recordedAudio";
