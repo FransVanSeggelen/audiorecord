@@ -3,7 +3,7 @@ var secondsRecorded = 0;
 var maxSeconds = 5;
 var interval;
 var lastState;
-var filename = 'myRecording.wav';
+var filename = 'ShineFestival';
 var uploadURL = 'http://shinefestival.herokuapp.com';
 
 document.addEventListener('deviceready', function(){
