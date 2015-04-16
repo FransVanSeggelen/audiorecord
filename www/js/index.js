@@ -25,7 +25,7 @@ document.addEventListener('deviceready', function(){
         filename += '.wav';
         filemime += 'wav'
     };
-    $('#textSecondsLeft').html(filename + ': ' + filemime);
+    $('#textSendStatus').html(filename + ': ' + filemime);
 
 
     updateCurrentState('idle');
@@ -109,7 +109,7 @@ function playRecordedFile(){
 function sendRecordedFile(){
     updateCurrentState('idle');
     $('#textSendStatus').html('uploading...');
-console.log('Net na uploading...');
+alert('Net na uploading...');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
         fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
             var options = new FileUploadOptions();
@@ -118,6 +118,7 @@ console.log('Net na uploading...');
             options.mimeType = 'audio/mpeg';
             options.chunkedMode = false;
 
+alert('Net voor file transfer...');
             var ft = new FileTransfer();
             ft.upload(fileEntry.toURL(), uploadURL, 
                 function(res){
