@@ -113,6 +113,9 @@ alert('Net na uploading...');
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
 alert('fileSystem= ' + fileSystem.root + '=' + fileSystem.name);
+        for(var key in fileSystem){
+            console.log('--' + key + '=' + fileSystem[key]);
+        }
         fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
 alert('Bij getFile...');
             var options = new FileUploadOptions();
