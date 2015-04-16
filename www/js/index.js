@@ -113,16 +113,7 @@ alert('Net na uploading...');
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
 alert('fileSystem= ' + fileSystem.root + '=' + fileSystem.name);
-        for(var key in fileSystem){
-            console.log('--' + key + '=' + fileSystem[key]);
-            if(key=='root'){
-                for(var effe in fileSystem[key]){
-                    alert('---->' + effe + '=' + fileSystem[effe]);
-                    console.log('---->' + effe + '=' + fileSystem[effe]);
-                }
-            }
-        }
-        fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
+        fileSystem.root.getFile('shine.wav', { create: false, exclusive: false }, function(fileEntry){
 alert('Bij getFile...');
             var options = new FileUploadOptions();
             options.fileKey = "recordedAudio";
