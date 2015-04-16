@@ -111,11 +111,13 @@ function sendRecordedFile(){
     $('#textSendStatus').html('uploading...');
 alert('Net na uploading...');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
+alert('Bij requestFileSystem...');
         fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
+alert('Bij getFile...');
             var options = new FileUploadOptions();
             options.fileKey = "recordedAudio";
             options.fileName = filename;
-            options.mimeType = 'audio/mpeg';
+            options.mimeType = filemime;
             options.chunkedMode = false;
 
 alert('Net voor file transfer...');
