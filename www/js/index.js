@@ -129,7 +129,7 @@ alert('Net voor file transfer...');
                     alert('oh no!');
                     $('#textSendStatus').html(err.body);
                 }, options);
-        });
+        }, function(error){alert('Error getting the file: ' + error.code + '= ' + error.message)});
     });
 
     
