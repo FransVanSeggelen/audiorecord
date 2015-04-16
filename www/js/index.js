@@ -131,7 +131,7 @@ function sendRecordedFile(){
                         alert('oh no!');
                         $('#textSendStatus').html(err.body);
                     }, options);
-            }, function(error){alert('Error getting the file: ' + error.code + '= ' + error.message)});
+            }, function(error){alert('Error bij file entry: ' + error.code + '= ' + error.message)});
         }, function(error){alert('Error getting the file: ' + error.code + '= ' + error.message)});
     });
 
