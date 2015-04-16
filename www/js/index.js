@@ -4,9 +4,30 @@ var maxSeconds = 5;
 var interval;
 var lastState;
 var filename = 'ShineFestival';
+var filemime = 'audio/'
 var uploadURL = 'http://shinefestival.herokuapp.com';
 
 document.addEventListener('deviceready', function(){
+
+    var isMobile = {
+        Android: function() { return navigator.userAgent.match(/Android/i); }, 
+        BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, 
+        iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, 
+        Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, 
+        Windows: function() { return navigator.userAgent.match(/IEMobile/i); }, 
+        any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
+    };
+    if (isMobile.Android()) {
+        filename += '.amr';
+        filemime += 'AMR'
+    };
+    if (isMobile.iOS()) {
+        filename += '.wav';
+        filemime += 'wav'
+    };
+    $('#textSecondsLeft').html(filename + ': ' + filemime);
+
+
     updateCurrentState('idle');
     updateSecondsRecordedUI();
 
@@ -88,7 +109,7 @@ function playRecordedFile(){
 function sendRecordedFile(){
     updateCurrentState('idle');
     $('#textSendStatus').html('uploading...');
-
+console.log('Net na uploading...');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
         fileSystem.root.getFile(filename, { create: false, exclusive: false }, function(fileEntry){
             var options = new FileUploadOptions();
